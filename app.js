@@ -157,5 +157,6 @@ app.post('/doInsert', async(req,res)=>{
     res.redirect('/')
 })
 
-app.listen(5000);
-console.log('Sever is running at 5000')
+const PORT = process.env.PORT || 5000
+app.listen(PORT);
+console.log('Sever is running ' + PORT)

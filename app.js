@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false}))
 app.set('view engine','hbs')
 hbs.registerPartials(__dirname + '/views/partials')
 
-var url = 'mongodb://localhost:27017';
+var url = 'mongodb+srv://leonry:huy0966902734@cluster0.9n6mb.mongodb.net/test';
 var MongoClient = require('mongodb').MongoClient;
 
 app.get('/home', (req,res)=>{

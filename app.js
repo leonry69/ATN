@@ -86,32 +86,20 @@ app.get('/',async (req,res)=>{
 })
 app.post('/search',async (req,res)=>{
     let client= await MongoClient.connect(url);
-
     let dbo = client.db("ATN");
-
     let nameInput = req.body.txtName;
-
     let searchCondition = new RegExp(nameInput,'i')
-
     let results = await dbo.collection("product").find({name:searchCondition}).toArray();
-
     res.render('home',{model:results})
 
 })
 app.get('/delete',async (req,res)=>{
     let id = req.query.id;
-
     var ObjectID = require('mongodb').ObjectID;
-
     let condition = {"_id" : ObjectID(id)};
-
-
     let client= await MongoClient.connect(url);
-
     let dbo = client.db("ATN");
-
     await dbo.collection("product").deleteOne(condition);
-
     res.redirect('/')
 
 })

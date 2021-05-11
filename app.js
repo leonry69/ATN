@@ -37,7 +37,7 @@ app.post('/new',async(req,res)=>{
     var nameInput = req.body.txtName;
     var passInput = req.body.txtPassword;
     var roleInput = req.body.role;
-    var newUser = {name: nameInput, password: passInput, role: roleInput};
+    var newUser = {name: nameInput, password: passInput};
     
     let client=await MongoClient.connect(url);
     let dbo = client.db("ATN");
@@ -53,7 +53,6 @@ app.post('/doLogin',async(req,res)=>{
     const cursor = dbo.collection("users").
         find({$and: [{name:nameInput},{password:passInput}]})
     const count = await cursor.count();
-
     if (count == 0){
         res.render('login',{message:'Invalid user!'})
     } else{
